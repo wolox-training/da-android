@@ -13,4 +13,11 @@
     <string name="fragment_example_username">Username</string>
     <string name="fragment_example_login">Login</string>
 
+    <string name="fragment_login_username">First Name (recommended)</string>
+    <string name="fragment_login_lastname">Last Name (recommended)</string>
+    <string name="fragment_login_login">Log in</string>
+    <string name="fragment_login_signup">Sign up</string>
+    <string name="fragment_login_terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="fragment_login_terms_and_conditions_text">By joining you agree to our</string>
+
 </resources>
