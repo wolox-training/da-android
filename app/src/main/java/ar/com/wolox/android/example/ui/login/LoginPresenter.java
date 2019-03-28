@@ -20,6 +20,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
 
     void saveLocalLoginData(String userEmail) {
         mLoginRepository.saveLoginData(userEmail);
+        getView().onLoginDataSaved();
     }
 
     void getLocalLoginData() {
