@@ -14,4 +14,6 @@ public interface ILoginView {
     void onFormIsValid();
 
     void onGetUserEmail(String userEmail);
+
+    void onLoginDataSaved();
 }
