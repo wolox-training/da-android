@@ -1,5 +1,7 @@
 package ar.com.wolox.android.example.ui.login;
 
+import ar.com.wolox.android.example.ui.login.model.User;
+
 /**
  * Login view
  */
@@ -15,5 +17,13 @@ public interface ILoginView {
 
     void onGetUserEmail(String userEmail);
 
-    void onLoginDataSaved();
+    void onUserLoginSucceeded(User user);
+
+    void onUserLoginFailed();
+
+    void onUserLoginCallFailed();
+
+    void onShowProgressBar();
+
+    void onHideProgressBar();
 }

@@ -2,12 +2,16 @@ package ar.com.wolox.android.example.ui.login;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.home.HomeActivity;
+import ar.com.wolox.android.example.ui.login.model.User;
 import ar.com.wolox.android.example.ui.signup.SignUpActivity;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 import butterknife.BindView;
@@ -34,6 +38,9 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements ILog
     @BindView(R.id.vLoginTermsAndConditions)
     TextView vLoginTermsAndConditions;
 
+    @BindView(R.id.vLoginProgressBar)
+    ProgressBar vLoginProgressBar;
+
     @Override
     public int layout() {
         return R.layout.fragment_login;
@@ -49,22 +56,6 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements ILog
         vLoginButton.setOnClickListener(v -> attemptToLogin());
         vLoginTermsAndConditions.setOnClickListener(v -> openTermsAndConditions());
         vSignUpButton.setOnClickListener(v -> openSignUpPage());
-    }
-
-    private void attemptToLogin() {
-        String userEmail = vUserEmailInput.getText().toString();
-        String password = vUserPasswordInput.getText().toString();
-        getPresenter().validateForm(userEmail, password);
-    }
-
-    private void openTermsAndConditions() {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(WOLOX_WEB));
-        startActivity(i);
-    }
-
-    private void openHomePage() {
-        startActivity(new Intent(getActivity(), HomeActivity.class));
     }
 
     private void openSignUpPage() {
@@ -88,7 +79,7 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements ILog
 
     @Override
     public void onFormIsValid() {
-        saveLocalLoginData();
+        performLogin();
     }
 
     @Override
@@ -97,15 +88,59 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements ILog
     }
 
     @Override
-    public void onLoginDataSaved() {
+    public void onUserLoginSucceeded(User user) {
+        getPresenter().saveUserSession(user);
         openHomePage();
     }
 
-    private void saveLocalLoginData() {
-        getPresenter().saveLocalLoginData(vUserEmailInput.getText().toString());
+    @Override
+    public void onUserLoginFailed() {
+        showMessage(getString(R.string.login_failed_message));
+    }
+
+    @Override
+    public void onUserLoginCallFailed() {
+        showMessage(getString(R.string.no_internet_conection_message));
+    }
+
+    @Override
+    public void onShowProgressBar() {
+        vLoginProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onHideProgressBar() {
+        vLoginProgressBar.setVisibility(View.GONE);
+    }
+
+    private void attemptToLogin() {
+        String userEmail = vUserEmailInput.getText().toString();
+        String password = vUserPasswordInput.getText().toString();
+        getPresenter().validateForm(userEmail, password);
+    }
+
+    private void openTermsAndConditions() {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(WOLOX_WEB));
+        startActivity(i);
+    }
+
+    private void openHomePage() {
+        if (getActivity() != null) {
+            getActivity().finish();
+            startActivity(new Intent(getActivity(), HomeActivity.class));
+        }
+    }
+
+    private void performLogin() {
+        getPresenter().performLogin(vUserEmailInput.getText().toString(), vUserPasswordInput.getText().toString());
     }
 
     private void loadLocalLoginData() {
         getPresenter().getLocalLoginData();
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
 }
