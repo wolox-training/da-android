@@ -15,5 +15,6 @@ object Extras {
 
         // Shared preferences
         const val USER_EMAIL = "user_email"
+        const val USER_SESSION = "user_session"
     }
 }

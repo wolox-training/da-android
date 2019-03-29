@@ -22,5 +22,7 @@
     <string name="fragment_login_empty_email_error_message">Email is empty!</string>
     <string name="fragment_login_empty_password_error_message">Password is empty!</string>
     <string name="fragment_login_invalid_email_error_message">Email is invalid!</string>
+    <string name="login_failed_message">Email or Password is incorrect.</string>
+    <string name="no_internet_conection_message">There is no internet connection</string>
 
 </resources>
