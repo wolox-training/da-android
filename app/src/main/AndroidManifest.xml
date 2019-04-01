@@ -24,11 +24,11 @@
             android:name=".example.ui.signup.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ui.home.HomeActivity"
+            android:name=".example.ui.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ui.login.LoginActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".example.ui.home.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example.ui.example.ExampleActivity"
             android:screenOrientation="portrait" />

@@ -24,5 +24,8 @@
     <string name="fragment_login_invalid_email_error_message">Email is invalid!</string>
     <string name="login_failed_message">Email or Password is incorrect.</string>
     <string name="no_internet_conection_message">There is no internet connection</string>
+    <string name="tab_news">News</string>
+    <string name="tab_profile">Profile</string>
+    <string name="wolox">Wolox</string>
 
 </resources>
