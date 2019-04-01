@@ -5,6 +5,7 @@ import ar.com.wolox.android.example.di.DaggerAppComponent
 import ar.com.wolox.wolmo.core.WolmoApplication
 import ar.com.wolox.wolmo.networking.di.DaggerNetworkingComponent
 import ar.com.wolox.wolmo.networking.di.NetworkingComponent
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.gson.FieldNamingPolicy
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.leakcanary.LeakCanary
@@ -22,6 +23,8 @@ class BootstrapApplication : WolmoApplication() {
             return
         }
         LeakCanary.install(this)
+
+        Fresco.initialize(this)
     }
 
     override fun applicationInjector(): AndroidInjector<BootstrapApplication> {
