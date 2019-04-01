@@ -6,12 +6,17 @@ import android.support.v4.content.ContextCompat
 import android.view.WindowManager
 import ar.com.wolox.android.R
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
+import javax.inject.Inject
+import dagger.Lazy
 
-class HomeActivity : WolmoActivity() {
+class HomeActivity @Inject constructor() : WolmoActivity() {
+
+    // Lazy example, a lazy injection does not build the dependencies until #get() is called
+    @Inject internal lateinit var lazyHomeFragment: Lazy<HomeFragment>
 
     override fun init() {
         setupStatusBarColor()
-        replaceFragment(R.id.vActivityBaseContent, HomeFragment())
+        replaceFragment(R.id.vActivityBaseContent, lazyHomeFragment.get())
     }
 
     override fun layout(): Int {

@@ -1,19 +1,25 @@
 package ar.com.wolox.android.example.ui.home
 
 import android.support.v4.app.Fragment
+import android.support.v4.util.Pair
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.ui.news.NewsFragment
 import ar.com.wolox.android.example.ui.profile.ProfileFragment
+import ar.com.wolox.wolmo.core.adapter.viewpager.SimpleFragmentPagerAdapter
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
+import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
-class HomeFragment : WolmoFragment<HomePresenter>(), IHomeView, HomePagerAdapter.HomePagesInit {
+class HomeFragment @Inject constructor() : WolmoFragment<BasePresenter<Any>>() {
 
     // Fragments for Tabs
-    private var newsFragment: Fragment? = null
-    private var profileFragment: Fragment? = null
+    @Inject
+    internal lateinit var newsFragment: NewsFragment
+    @Inject
+    internal lateinit var profileFragment: ProfileFragment
 
-    private var mHomePagerAdapter: HomePagerAdapter? = null
+    private lateinit var fragmentPagerAdapter: SimpleFragmentPagerAdapter
 
     override fun init() {
         setupTabs()
@@ -24,28 +30,17 @@ class HomeFragment : WolmoFragment<HomePresenter>(), IHomeView, HomePagerAdapter
     }
 
     private fun setupTabs() {
-        mHomePagerAdapter = HomePagerAdapter(activity, childFragmentManager, this)
-        container.adapter = mHomePagerAdapter
-        tabs?.setupWithViewPager(container)
+        fragmentPagerAdapter = SimpleFragmentPagerAdapter(childFragmentManager)
+        fragmentPagerAdapter.addFragments(
+                Pair<Fragment, String>(newsFragment, getString(R.string.tab_news)),
+                Pair<Fragment, String>(profileFragment, getString(R.string.tab_profile)))
+        vViewPager.adapter = fragmentPagerAdapter
+        tabs?.setupWithViewPager(vViewPager)
         setupIcons()
     }
 
     private fun setupIcons() {
         tabs.getTabAt(0)?.setIcon(R.drawable.ic_news_list_off)
         tabs.getTabAt(1)?.setIcon(R.drawable.ic_profile_off)
-    }
-
-    override fun initNewsFragment(position: Int): Fragment? {
-        if (newsFragment == null)
-            newsFragment = NewsFragment()
-
-        return newsFragment
-    }
-
-    override fun initProfileFragment(position: Int): Fragment? {
-        if (profileFragment == null)
-            profileFragment = ProfileFragment()
-
-        return profileFragment
     }
 }
