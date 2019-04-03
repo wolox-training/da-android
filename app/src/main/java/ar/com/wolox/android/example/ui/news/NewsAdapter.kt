@@ -31,7 +31,7 @@ class NewsAdapter(private var items: List<News>, private var listener: NewsAdapt
         p0.apply {
             title.text = news.title
             text.text = news.text
-            timeCreated.text = itemView.context.getString(R.string.year, getTimeFromDate(news.createdAt))
+            timeCreated.text = getTimeFromDate(news.createdAt)
             picture.setImageURI(Uri.parse(news.picture))
             toggleLikeImage(news.likes, itemView, likes)
         }
