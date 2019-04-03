@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/vImageFullScreenImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:transitionName="profile"
+        tools:targetApi="lollipop" />
+
+    <ImageView
+        android:layout_margin="@dimen/spacing_large"
+        android:id="@+id/vImageFullScreenlBackArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_back"
+        tools:ignore="ContentDescription" />
+</FrameLayout>

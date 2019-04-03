@@ -35,6 +35,13 @@
         <activity
             android:name=".example.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".example.ui.newsdetail.NewsDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".example.ui.imagefullscreen.ImageFullScreenActivity"
+            android:theme="@style/FullscreenTheme" />
     </application>
 
 </manifest>

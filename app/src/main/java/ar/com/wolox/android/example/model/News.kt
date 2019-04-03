@@ -2,8 +2,9 @@ package ar.com.wolox.android.example.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class News {
+class News : Serializable {
     @SerializedName("id")
     @Expose
     val id: Int? = null
@@ -25,4 +26,6 @@ class News {
     @SerializedName("likes")
     @Expose
     val likes: List<Int>? = null
+
+    var like: Boolean = false
 }

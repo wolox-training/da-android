@@ -33,15 +33,16 @@ class NewsAdapter(private var items: List<News>, private var listener: NewsAdapt
             text.text = news.text
             timeCreated.text = getTimeFromDate(news.createdAt)
             picture.setImageURI(Uri.parse(news.picture))
-            toggleLikeImage(news.likes, itemView, likes)
+            toggleLikeImage(news.like, itemView, likes)
+            itemView.setOnClickListener { listener.onItemClick(news, picture, p1) }
         }
 
         setupEndlessRecyclerView(p0)
     }
 
-    private fun toggleLikeImage(likes: List<Int>?, view: View, imageView: ImageView) {
+    private fun toggleLikeImage(likes: Boolean, view: View, imageView: ImageView) {
         when {
-            likes?.isNotEmpty() == true -> imageView.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_like_on))
+            likes -> imageView.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_like_on))
             else -> imageView.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.ic_like_off))
         }
     }
@@ -63,6 +64,12 @@ class NewsAdapter(private var items: List<News>, private var listener: NewsAdapt
         offset = items?.size ?: 0
     }
 
+    fun refreshCard(position: Int, like: Boolean) {
+        val news = this.items[position]
+        news.like = like
+        notifyItemChanged(position)
+    }
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val picture: ImageView = view.vNewsItemImageView
         val title: TextView = view.vNewsItemTitle
@@ -73,5 +80,6 @@ class NewsAdapter(private var items: List<News>, private var listener: NewsAdapt
 
     interface NewsAdapterBridge {
         fun loadMore()
+        fun onItemClick(news: News, imageView: ImageView, position: Int)
     }
 }

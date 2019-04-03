@@ -1,12 +1,14 @@
 package ar.com.wolox.android.example.ui.news
 
+import ar.com.wolox.android.example.model.News
 import ar.com.wolox.android.example.network.NewsService
+import ar.com.wolox.android.example.ui.login.repository.LoginRepository
 import ar.com.wolox.android.example.utils.networkCallback
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices
 import javax.inject.Inject
 
-class NewsPresenter @Inject constructor(private val mRetrofitServices: RetrofitServices) : BasePresenter<INewsView>() {
+class NewsPresenter @Inject constructor(private val mRetrofitServices: RetrofitServices, private val loginRepository: LoginRepository) : BasePresenter<INewsView>() {
 
     override fun onViewAttached() {
         getNews()
@@ -17,7 +19,7 @@ class NewsPresenter @Inject constructor(private val mRetrofitServices: RetrofitS
                 networkCallback {
                     onResponseSuccessful { response ->
                         runIfViewAttached { view ->
-                            view.loadNews(response)
+                            view.loadNews(parseLikes(response))
                         }
                     }
 
@@ -38,7 +40,7 @@ class NewsPresenter @Inject constructor(private val mRetrofitServices: RetrofitS
                 networkCallback {
                     onResponseSuccessful { response ->
                         runIfViewAttached { view ->
-                            view.loadMoreNews(response)
+                            view.loadMoreNews(parseLikes(response))
                         }
                     }
 
@@ -47,5 +49,18 @@ class NewsPresenter @Inject constructor(private val mRetrofitServices: RetrofitS
                     onCallFailure { runIfViewAttached(Runnable { view.showError() }) }
                 }
         )
+    }
+
+    /**
+     * Bind Like when current user id exists in property likes (List<Int>)
+     */
+    private fun parseLikes(newsList: List<News>?): List<News>? {
+        val currentUserId = loginRepository.userSession.id.toInt()
+        return newsList?.map { getLike(it, currentUserId) }
+    }
+
+    private fun getLike(news: News, currentUserId: Int): News {
+        news.like = news.likes?.contains(currentUserId) ?: false
+        return news
     }
 }
