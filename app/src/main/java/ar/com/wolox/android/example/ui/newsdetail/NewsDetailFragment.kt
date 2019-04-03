@@ -1,5 +1,6 @@
 package ar.com.wolox.android.example.ui.newsdetail
 
+import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
@@ -87,8 +88,10 @@ class NewsDetailFragment : WolmoDialogFragment<NewsDetailPresenter>(), INewsDeta
 
     private fun finishWithResult() {
         val intent = Intent()
-        if (previousLike != currentLike) intent.putExtra(LIKE_DATA, currentLike)
-        activity?.setResult(RESULT_OK, intent)
+        currentLike?.let {
+            if (previousLike != it) intent.putExtra(LIKE_DATA, it)
+            activity?.setResult(RESULT_OK, intent)
+        } ?: activity?.setResult(RESULT_CANCELED, intent)
     }
 
     override fun onBackPressed(): Boolean {
