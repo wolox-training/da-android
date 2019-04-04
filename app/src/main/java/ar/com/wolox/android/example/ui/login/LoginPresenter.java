@@ -28,7 +28,12 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         this.mLoginRepository = loginRepository;
     }
 
-    void performLogin(String userEmail, String userPassword) {
+    /**
+     * This method perform the Login with retrofit
+     * @param userEmail mandatory
+     * @param userPassword mandatory
+     */
+    public void performLogin(String userEmail, String userPassword) {
         getView().onShowProgressBar();
         mLoginRepository.saveLocalLoginData(userEmail);
         mLoginRepository.doGetUser(userEmail, userPassword).enqueue(new NetworkCallback<List<User>>() {
@@ -60,7 +65,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         }
     }
 
-    void saveUserSession(User user) {
+    public void saveUserSession(User user) {
         mLoginRepository.saveUserSession(user);
     }
 
