@@ -12,5 +12,8 @@ object Extras {
 
     object UserLogin {
         const val USERNAME = "username"
+
+        // Shared preferences
+        const val USER_EMAIL = "user_email"
     }
 }

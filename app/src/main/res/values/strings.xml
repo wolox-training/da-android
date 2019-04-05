@@ -13,11 +13,14 @@
     <string name="fragment_example_username">Username</string>
     <string name="fragment_example_login">Login</string>
 
-    <string name="fragment_login_username">First Name (recommended)</string>
-    <string name="fragment_login_lastname">Last Name (recommended)</string>
+    <string name="fragment_login_email">Email</string>
+    <string name="fragment_login_password">Password</string>
     <string name="fragment_login_login">Log in</string>
     <string name="fragment_login_signup">Sign up</string>
-    <string name="fragment_login_terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="fragment_login_terms_and_conditions"><![CDATA[<a  href="http://www.wolox.com.ar">Terms &amp; Conditions</a>]]></string>
     <string name="fragment_login_terms_and_conditions_text">By joining you agree to our</string>
+    <string name="fragment_login_empty_email_error_message">Email is empty!</string>
+    <string name="fragment_login_empty_password_error_message">Password is empty!</string>
+    <string name="fragment_login_invalid_email_error_message">Email is invalid!</string>
 
 </resources>
