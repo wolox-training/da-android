@@ -9,12 +9,12 @@ import ar.com.wolox.android.example.ui.login.LoginActivity;
 import ar.com.wolox.android.example.ui.login.model.User;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 
-import static ar.com.wolox.android.example.utils.Constants.SPLASH_TIME;
-
 /**
  * Splash fragment
  */
 public class SplashFragment extends WolmoFragment<SplashPresenter> implements ISplashView {
+
+    private static final Integer SPLASH_TIME = 1000;
 
     @Override
     public int layout() {

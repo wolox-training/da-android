@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -13,8 +14,6 @@ import ar.com.wolox.android.example.ui.login.repository.LoginRepository;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 import ar.com.wolox.wolmo.networking.retrofit.callback.NetworkCallback;
 import okhttp3.ResponseBody;
-
-import static ar.com.wolox.android.example.utils.Constants.EMAIL_PATTERN;
 
 /**
  * Login Presenter
@@ -100,7 +99,17 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     }
 
     private Boolean isValidUserEmail(String userEmail) {
-        return EMAIL_PATTERN.matcher(userEmail).matches();
+        Pattern eMailPattern = Pattern.
+                compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                        "\\@" +
+                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                        "(" +
+                        "\\." +
+                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                        ")+"
+                );
+
+        return eMailPattern.matcher(userEmail).matches();
     }
 
     private Boolean isEmptyUserEmail(String userEmail) {
