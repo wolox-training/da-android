@@ -17,7 +17,7 @@
     <string name="fragment_login_password">Password</string>
     <string name="fragment_login_login">Log in</string>
     <string name="fragment_login_signup">Sign up</string>
-    <string name="fragment_login_terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="fragment_login_terms_and_conditions"><![CDATA[<a  href="http://www.wolox.com.ar">Terms &amp; Conditions</a>]]></string>
     <string name="fragment_login_terms_and_conditions_text">By joining you agree to our</string>
     <string name="fragment_login_empty_email_error_message">Email is empty!</string>
     <string name="fragment_login_empty_password_error_message">Password is empty!</string>

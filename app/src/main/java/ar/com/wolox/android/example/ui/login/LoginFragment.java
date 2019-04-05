@@ -1,7 +1,8 @@
 package ar.com.wolox.android.example.ui.login;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,8 +12,6 @@ import ar.com.wolox.android.example.ui.home.HomeActivity;
 import ar.com.wolox.android.example.ui.signup.SignUpActivity;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 import butterknife.BindView;
-
-import static ar.com.wolox.android.example.utils.Constants.WOLOX_WEB;
 
 /**
  * Login fragment
@@ -42,12 +41,12 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements ILog
     @Override
     public void init() {
         loadLocalLoginData();
+        bindTermsAndConditionsLink();
     }
 
     @Override
     public void setListeners() {
         vLoginButton.setOnClickListener(v -> attemptToLogin());
-        vLoginTermsAndConditions.setOnClickListener(v -> openTermsAndConditions());
         vSignUpButton.setOnClickListener(v -> openSignUpPage());
     }
 
@@ -55,12 +54,6 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements ILog
         String userEmail = vUserEmailInput.getText().toString();
         String password = vUserPasswordInput.getText().toString();
         getPresenter().validateForm(userEmail, password);
-    }
-
-    private void openTermsAndConditions() {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(WOLOX_WEB));
-        startActivity(i);
     }
 
     private void openHomePage() {
@@ -107,5 +100,10 @@ public class LoginFragment extends WolmoFragment<LoginPresenter> implements ILog
 
     private void loadLocalLoginData() {
         getPresenter().getLocalLoginData();
+    }
+
+    private void bindTermsAndConditionsLink() {
+        vLoginTermsAndConditions.setText(Html.fromHtml(getString(R.string.fragment_login_terms_and_conditions)));
+        vLoginTermsAndConditions.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }
