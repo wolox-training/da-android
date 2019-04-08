@@ -3,6 +3,7 @@ package ar.com.wolox.training.example.ui.home
 import android.app.Activity
 import ar.com.wolox.training.example.ui.news.NewsFragment
 import ar.com.wolox.training.example.ui.profile.ProfileFragment
+import ar.com.wolox.training.example.ui.youtubesearch.YouTubeSearchFragment
 import dagger.Binds
 import dagger.Module
 import dagger.android.ActivityKey
@@ -28,4 +29,7 @@ abstract class HomeModule {
 
     @ContributesAndroidInjector
     internal abstract fun profileFragment(): ProfileFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun youTubeSearchFragment(): YouTubeSearchFragment
 }

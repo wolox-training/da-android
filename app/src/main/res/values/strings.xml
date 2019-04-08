@@ -31,5 +31,8 @@
     <string name="fragment_profile_logout">LogOut</string>
     <string name="fragment_profile_username_title">Username</string>
     <string name="fragment_profile_useremail_title">UserEmail</string>
+    <string name="tab_search">Search</string>
+    <string name="fragment_youtube_search_text">Search</string>
+    <string name="fragment_youtube_search_hint">YouTube Search</string>
 
 </resources>

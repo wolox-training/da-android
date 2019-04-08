@@ -30,6 +30,8 @@ android {
 
         setProperty("archivesBaseName", "WoloxApp-$versionName") // Generated APK file name
         buildConfigField "String", "BASE_URL", '"https://android-training.herokuapp.com/"'
+        buildConfigField "String", "API_KEY", '"AIzaSyCzfPDX-yAzU3x4fjH3XvqUHFddARYnEXw"'
+        buildConfigField "String", "YOUTUBE_BASE_URL", '"https://www.googleapis.com/youtube/v3/"'
     }
 
     signingConfigs {
@@ -102,6 +104,8 @@ buildscript {
     ext.fresco_version = '1.13.0'
     ext.prettytime_version = '4.0.1.Final'
     ext.mockretrofit_version = '2.6.0-SNAPSHOT'
+    ext.retrofit_adapter_version = '2.1.1-SNAPSHOT'
+    ext.play_services_auth_version = '16.0.1'
 }
 
 dependencies {
@@ -138,7 +142,8 @@ dependencies {
     implementation "com.facebook.fresco:fresco:$fresco_version"
     implementation "org.ocpsoft.prettytime:prettytime:$prettytime_version"
     implementation "com.squareup.retrofit2:retrofit-mock:$mockretrofit_version"
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation "com.google.android.gms:play-services-auth:$play_services_auth_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_adapter_version"
 
     // Testing dependencies
     testImplementation "junit:junit:4.12"
