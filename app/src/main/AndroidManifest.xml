@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ar.com.wolox.android">
+    package="ar.com.wolox.training">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".example.BootstrapApplication"
+        android:name="ar.com.wolox.training.example.BootstrapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".example.ui.splash.SplashActivity">
+        <activity android:name="ar.com.wolox.training.example.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,26 +21,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".example.ui.signup.SignUpActivity"
+            android:name="ar.com.wolox.training.example.ui.signup.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ui.login.LoginActivity"
+            android:name="ar.com.wolox.training.example.ui.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ui.home.HomeActivity"
+            android:name="ar.com.wolox.training.example.ui.home.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ui.example.ExampleActivity"
+            android:name="ar.com.wolox.training.example.ui.example.ExampleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ui.viewpager.ViewPagerActivity"
+            android:name="ar.com.wolox.training.example.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ui.newsdetail.NewsDetailActivity"
+            android:name="ar.com.wolox.training.example.ui.newsdetail.NewsDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".example.ui.imagefullscreen.ImageFullScreenActivity"
+            android:name="ar.com.wolox.training.example.ui.imagefullscreen.ImageFullScreenActivity"
             android:theme="@style/FullscreenTheme" />
     </application>
 

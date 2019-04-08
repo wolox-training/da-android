@@ -138,6 +138,7 @@ dependencies {
     implementation "com.facebook.fresco:fresco:$fresco_version"
     implementation "org.ocpsoft.prettytime:prettytime:$prettytime_version"
     implementation "com.squareup.retrofit2:retrofit-mock:$mockretrofit_version"
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     // Testing dependencies
     testImplementation "junit:junit:4.12"

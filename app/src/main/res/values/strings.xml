@@ -28,5 +28,8 @@
     <string name="tab_profile">Profile</string>
     <string name="wolox">Wolox</string>
     <string name="image_transition_name">ImageTransition</string>
+    <string name="fragment_profile_logout">LogOut</string>
+    <string name="fragment_profile_username_title">Username</string>
+    <string name="fragment_profile_useremail_title">UserEmail</string>
 
 </resources>

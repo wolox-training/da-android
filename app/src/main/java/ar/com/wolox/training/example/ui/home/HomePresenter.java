@@ -1,0 +1,14 @@
+package ar.com.wolox.training.example.ui.home;
+
+import javax.inject.Inject;
+
+import ar.com.wolox.wolmo.core.presenter.BasePresenter;
+
+/**
+ * Home Presenter
+ */
+public class HomePresenter extends BasePresenter<IHomeView> {
+
+    @Inject
+    HomePresenter(){}
+}
